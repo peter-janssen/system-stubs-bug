@@ -1,6 +1,7 @@
 package com.example;
 
 import lombok.SneakyThrows;
+import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -45,11 +46,5 @@ public class SystemStubsEnvBug {
         environmentVariables.teardown();
         softly.assertThat(System.getenv().containsKey(KEY)).withFailMessage("Environment variable should definitely be cleared after teardown").isFalse();
     }
-
-    @AfterEach
-    void tearDown() {
-        softly.assertThat(System.getenv().containsKey(KEY)).withFailMessage("Environment variable should definitely be cleared after teardown").isFalse();
-    }
-
 
 }
